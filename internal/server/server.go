@@ -8,6 +8,7 @@ import (
 	"github.com/go-redis/redis/v8"
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo/v4"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -47,9 +48,15 @@ func (s *Server) Run() error {
 
 	s.echo.Server.ReadTimeout = time.Second * s.echo.Server.ReadTimeout
 	s.echo.Server.WriteTimeout = time.Second * s.echo.Server.WriteTimeout
+	server := &http.Server{
+		Addr:         s.cfg.Server.Port,
+		ReadTimeout:  time.Second * s.echo.Server.ReadTimeout,
+		IdleTimeout:  time.Second * s.echo.Server.IdleTimeout,
+		WriteTimeout: time.Second * s.echo.Server.WriteTimeout,
+	}
 	go func() {
 		s.echo.Server.MaxHeaderBytes = maxHeaderBytes
-		if err := s.echo.Start(s.cfg.Server.Port); err != nil {
+		if err := s.echo.StartServer(server); err != nil {
 			s.logger.Fatal("error starting  Server: ", err)
 		}
 	}()

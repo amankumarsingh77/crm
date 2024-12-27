@@ -14,7 +14,6 @@ go.work
 config.yml
 
 # Go modules
-go.mod
 go.sum
 
 # Go build artifacts

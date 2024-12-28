@@ -66,6 +66,10 @@ func (p *Pagination) GetOffset() int {
 	return (p.Page - 1) * p.Size
 }
 
+func (q *Pagination) GetLimit() int {
+	return q.Size
+}
+
 func (p *Pagination) GetQueryString() string {
 	return fmt.Sprintf("page=%v&size=%v&orderBy=%v", p.Page, p.Size, p.OrderBy)
 }

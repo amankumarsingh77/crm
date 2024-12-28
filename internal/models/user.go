@@ -20,11 +20,11 @@ type User struct {
 }
 
 type UsersList struct {
-	TotalCount int    `json:"total_count" `
-	TotalPages int    `json:"total_pages" `
-	Page       int    `json:"page" `
-	Size       int    `json:"size" `
-	Users      []User `json:"users" `
+	TotalCount int     `json:"total_count" `
+	TotalPages int     `json:"total_pages" `
+	Page       int     `json:"page" `
+	Size       int     `json:"size" `
+	Users      []*User `json:"users" `
 }
 
 type UserWithToken struct {

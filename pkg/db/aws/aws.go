@@ -12,7 +12,6 @@ func NewAwsClient(endpoint, region, accesskey, secretkey string) (*s3.Client, er
 	cfg, err := config.LoadDefaultConfig(
 		context.Background(),
 		config.WithRegion(region),
-		config.WithBaseEndpoint(endpoint), // can be used with any s3 compatible storage providers
 		config.WithCredentialsProvider(
 			credentials.NewStaticCredentialsProvider(
 				accesskey,

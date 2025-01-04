@@ -22,7 +22,14 @@ func NewAwsClient(endpoint, region, accesskey, secretkey string) (*s3.Client, er
 	if err != nil {
 		return nil, errors.New("failed to load configuration, " + err.Error())
 	}
+	var client *s3.Client
+	if endpoint != "" {
+		client = s3.NewFromConfig(cfg, func(o *s3.Options) {
+			o.BaseEndpoint = &endpoint
+		})
+	} else {
 
-	client := s3.NewFromConfig(cfg)
+		client = s3.NewFromConfig(cfg)
+	}
 	return client, nil
 }

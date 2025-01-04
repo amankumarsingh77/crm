@@ -3,6 +3,18 @@ package respository
 const (
 	createApplication = `INSERT INTO applications (user_id, college_name, course_name, intake_date, current_stage, status)
 							VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
+	createStageProgress = `INSERT INTO stage_progress (application_id, stage, status, start_date) 
+							VALUES ($1, $2, $3, $4) RETURNING  *`
+	createDocument = `INSERT INTO documents (stage_progress_id, document_type, file_name, s3_path, file_size, 
+                             content_type, uploaded_by, is_verified)
+						VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+						RETURNING *`
+	createNotification = `INSERT INTO notifications (user_id, application_id, title, message, is_read)
+							VALUES ($1, $2, $3, $4, $5)
+							RETURNING *`
+	createStageNote = `INSERT INTO stage_notes (stage_progress_id, note, created_by)
+							VALUES ($1, $2, $3)
+							RETURNING *`
 	updateApplication = `UPDATE applications 
 						SET current_stage = COALESCE(NULLIF($1, ''), current_stage),
 						    status = COALESCE(NULLIF($2, ''), status),

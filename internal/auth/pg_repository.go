@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/amankumarsingh77/cmr/internal/models"
 	"github.com/amankumarsingh77/cmr/pkg/utils"
-	"github.com/gofrs/uuid"
+	"github.com/google/uuid"
 )
 
 type Repository interface {

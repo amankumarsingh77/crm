@@ -7,7 +7,7 @@ import (
 	"github.com/amankumarsingh77/cmr/internal/auth"
 	"github.com/amankumarsingh77/cmr/internal/models"
 	"github.com/amankumarsingh77/cmr/pkg/utils"
-	"github.com/gofrs/uuid"
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
 
